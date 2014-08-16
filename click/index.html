@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<title>click-jump</title>
+	<meta charset="utf-8">
+	<script src="jquery-1.11.1.js"></script>
+</head>
+<body>
+	<a href="javascript:;" id="a">aaaaa</a>
+	<a href="http://www.baidu.com" id="b">点击此处跳转</a>
+
+	<script>
+	// var a = document.getElementById('a');
+	// var b = document.getElementById('b');
+
+	// a.onclick = function(){
+	// 	b.click();
+	// };
+
+	// b.onclick = function(){
+	// 	alert("b已经被触发click");
+	// }
+	var a = $('#a');
+	var b = $('#b');
+
+	a.click(function(){
+		b.click();
+	});
+
+	b.click(function(){
+		alert("b已经被触发click");
+	})
+	</script>
+</body>
+</html>

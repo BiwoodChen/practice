@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<title>offsetTop</title>
+	<style>
+		body{height: 3000px;}
+		.box{position: absolute; top:0; border: 1px solid #000; height: 300px; width: 300px;}
+	</style>
+
+	<script>
+	window.onload = function(){
+		var d = document.getElementById('div1');
+		var h = d.offsetTop;
+		window.onscroll = function(){
+			document.title = document.documentElement.scrollTop;
+			d.style.top = document.body.scrollTop + h + 'px';
+		}}
+	</script>
+</head>
+<body>
+	<div id="div1" class="box">
+		aaaa
+	</div>
+</body>
+</html>

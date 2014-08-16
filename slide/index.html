@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<title>slide</title>
+	<meta charset="utf-8" >
+	<style>
+		html, body, div, ul, li{margin: 0; padding: 0;}
+		ul, li{list-style: none;}
+		.slide_window{width: 500px; height: 300px; overflow: hidden;}
+		.slide_window ul li{float: left; width: 500px; height: 300px; background-color: red; color: #fff; text-align: center; line-height: 300px;}
+	</style>
+	<script src="jquery-1.11.1.min.js" ></script>
+	<script>
+	$(function(){
+		var box = $('#js_slide_box');
+		var show = box.find('#js_window');
+
+		//初始化
+		var itemCon = show.children('ul');
+		itemCon.children('li').clone().appendTo(itemCon);
+		var itemLength = itemCon.children('li').length;
+		var itemW = itemCon.children('li:eq(0)').width();
+
+		itemCon.parent().css({
+			'position': 'relative',
+			'overflow': 'hidden'
+		});
+
+		var w = itemW*itemLength;
+		itemCon.css({
+			width: w,
+			position: 'absolute',
+			left: 0
+		});
+
+		var w = -itemW;
+		var dist = w;
+		var count = 1;
+		var pos = (itemLength/2-1)*w;
+
+		function goRight(){
+			if(count == itemLength){
+				clearInterval(timer);
+				itemCon.css('left', pos);
+				dist = (itemLength/2)*w;
+				count = (itemLength/2);
+				slide();
+				timer = setInterval(goRight, 2000);
+			}else{
+				slide();
+			};
+		};
+
+		function slide(){
+			itemCon.animate({
+				left: dist
+			}, 200);
+			dist += w;
+			count++;
+		}
+
+		var timer = setInterval(goRight, 2000);
+	})
+	</script>
+</head>
+<body>
+	<div class="slide_box" id="js_slide_box">
+		<div class="slide_window" id="js_window" >
+			<ul>
+				<li>第一个</li>
+				<li>第二个</li>
+				<li>第三个</li>
+				<li>第四个</li>
+				<li>第五个</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
